@@ -11,36 +11,36 @@ This project is an end-to-end predictive risk intelligence system designed to pr
 
 The system helps answer key operational questions such as:
 
-Which tasks are likely to get delayed and by how many days?
+    1.Which tasks are likely to get delayed and by how many days?
 
-Which equipment types have a higher probability of failure?
+    2.Which equipment types have a higher probability of failure?
 
-Which contractor contributes the most to overall project delays?
+    3.Which contractor contributes the most to overall project delays?
 
-Where should teams intervene early to prevent cascading delays?
+    4.Where should teams intervene early to prevent cascading delays?
 
 🎯 Objectives
 
-Predict task-level delays before they occur
+    1.Predict task-level delays before they occur
 
-Identify equipment failure risks that can impact schedules
+    2.Identify equipment failure risks that can impact schedules
 
-Aggregate risks to calculate overall project delay
+    3.Aggregate risks to calculate overall project delay
 
-Provide real-time alerts and an interactive application for monitoring tasks, equipment, and risks
+    4.Provide real-time alerts and an interactive application for monitoring tasks, equipment, and risks
 
-🏗️ End-to-End Architecture
+🏗️End-to-End Architecture
 1. Data Ingestion & Consolidation
 
 Multiple datasets are ingested and merged into a unified view:
 
-Project metadata (project ID, contractor, location)
+    1.Project metadata (project ID, contractor, location)
 
-Task schedules (start/end dates, progress, dependencies)
+    2.Task schedules (start/end dates, progress, dependencies)
 
-Cost and execution data
+    3. Cost and execution data
 
-Equipment usage and historical failure data
+    4.Equipment usage and historical failure data
 
 All datasets are standardized and merged using Foundry pipelines.
 
@@ -48,13 +48,13 @@ All datasets are standardized and merged using Foundry pipelines.
 
 A Golden Project Master Schedule dataset is created through transformations that:
 
-Clean and normalize raw inputs
+    1.Clean and normalize raw inputs
 
-Engineer features such as:
+    2.Engineer features such as:
 
-Task duration and slippage
+    3.Task duration and slippage
 
-Contractor workload
+    4.Contractor workload
 
 Equipment usage frequency
 
@@ -64,11 +64,11 @@ Combine project-level, task-level, and equipment-level attributes
 
 This Golden dataset acts as a single source of truth for:
 
-Model training
+    1.Model training
 
-Batch predictions
+    2.Batch predictions
 
-Downstream analytics and applications
+    3.Downstream analytics and applications
 
 3. Machine Learning Models
 
@@ -76,29 +76,29 @@ Two ML models are implemented and integrated directly into Foundry pipelines:
 
 🔹 Random Forest Regressor
 
-Predicts task-level delay (in days)
+    1.Predicts task-level delay (in days)
 
-Uses task progress, dependencies, contractor performance, and equipment risk signals
+    2.Uses task progress, dependencies, contractor performance, and equipment risk signals
 
 🔹 Random Forest Classifier
 
-Predicts equipment failure probability
+    1.Predicts equipment failure probability
 
-Uses historical failure patterns, usage frequency, and maintenance indicators
+    2.Uses historical failure patterns, usage frequency, and maintenance indicators
 
 Both models:
 
-Are versioned in Foundry’s code repository
+    1.Are versioned in Foundry’s code repository
 
-Support continuous prediction updates as new data arrives
+    2.Support continuous prediction updates as new data arrives
 
 4. Risk Aggregation Logic
 
-Task delays are aggregated at the contractor level
+    1.Task delays are aggregated at the contractor level
 
-The contractor with the maximum cumulative delay determines the overall project delay
+    2.The contractor with the maximum cumulative delay determines the overall project delay
 
-Equipment failure probabilities are factored into task-level risk scoring
+    3.Equipment failure probabilities are factored into task-level risk scoring
 
 🚨 Alerts & Monitoring
 
@@ -106,72 +106,98 @@ An automated alerting framework is implemented:
 
 🚩 Task Delay Alert
 
-Triggered when predicted delay exceeds 30 days
+    1.Triggered when predicted delay exceeds 30 days
 
-Identifies specific high-risk tasks
+    2.Identifies specific high-risk tasks
 
 🚧 Equipment Risk Alerts
 
-Highlights equipment with high failure probability
+    1.Highlights equipment with high failure probability
 
 Planned Enhancements
 
-Dependency-aware alerts (impact on downstream tasks)
+    1.Dependency-aware alerts (impact on downstream tasks)
 
-Project-level risk escalation alerts
+    2.Project-level risk escalation alerts
 
 🖥️ Interactive Application (Foundry App)
 
 An interactive application was built to provide a single operational control panel for users.
 
 🔹 1. Tasks Information
+  
+    1.Displays all project tasks with contractor performance
 
-Displays all project tasks with contractor performance
+    2.Filterable views for easy navigation
 
-Filterable views for easy navigation
+    3.Task-level actions:
 
-Task-level actions:
+        1.View detailed information
 
-View detailed information
+        2.Change task priority
 
-Change task priority
+        3.Add notes (auto-synced to Notes tab)
+        <img width="1864" height="909" alt="unnamed" src="https://github.com/user-attachments/assets/36d823e0-f97d-4a6e-b7d3-6612593e8020" />
 
-Add notes (auto-synced to Notes tab)
+<img width="1885" height="915" alt="unnamed" src="https://github.com/user-attachments/assets/f7f319c7-57cd-4269-a920-d6dcdb200d59" />
+
 
 🔹 2. Equipment Information
 
-Shows equipment usage across projects
+    1.Shows equipment usage across projects
 
-Highlights:
+    2.Highlights:
 
-Most-used and least-used equipment
+        1.Most-used and least-used equipment
 
-Average failure probability per equipment type (from ML model)
+        2.Average failure probability per equipment type (from ML model)
+<img width="1855" height="917" alt="unnamed" src="https://github.com/user-attachments/assets/264cc7d2-a9ba-435b-8c2b-614f430283a7" />
+<img width="1855" height="917" alt="unnamed" src="https://github.com/user-attachments/assets/93768ebb-ff63-426c-aadf-36cdbf559b88" />
 
 🔹 3. Notes
 
-Centralized repository of all user-added notes
+    1.Centralized repository of all user-added notes
 
-Supports operational, execution, and safety instructions
+    2.Supports operational, execution, and safety instructions
 
-Automatically updated from task interactions
+    3.Automatically updated from task interactions
+<img width="800" height="162" alt="unnamed" src="https://github.com/user-attachments/assets/6ddd57ee-51f4-4943-8cb3-28ace80c5df6" />
 
 🔹 4. Alerts
 
-Displays ML-driven risk outputs:
+    1.Displays ML-driven risk outputs:
 
-Tasks with high delay risk
+        1.Tasks with high delay risk
 
-Equipment with high failure probability
+        2.Equipment with high failure probability
 
-Enables real-time monitoring of critical risks
+    2.Enables real-time monitoring of critical risks
+<img width="1418" height="916" alt="unnamed" src="https://github.com/user-attachments/assets/545351bc-0487-406b-9563-e8a0fbe27952" />
 
 📊 Key Outcomes
 
-Proactive identification of delays before execution impact
+    1.Proactive identification of delays before execution impact
 
-Improved coordination between project and equipment teams
+    2.Improved coordination between project and equipment teams
 
-Centralized visibility across tasks, equipment, notes, and alerts
+    3.Centralized visibility across tasks, equipment, notes, and alerts
 
-Scalable foundation for advanced risk intelligence
+    4.Scalable foundation for advanced risk intelligence
+
+🛠️ Tech Stack
+
+    1.Platform: Palantir Foundry
+
+    2.Data Engineering: Foundry Pipelines & Transformations
+
+    3.Machine Learning: Random Forest (Regressor & Classifier)
+
+    4.Application Layer: Foundry Application Framework
+
+    5.Alerts & Monitoring: Automated pipeline-driven alerts
+
+👤 Author
+
+Sumeet Ghodke
+Data Analyst | Analytics & ML Engineering
+    
